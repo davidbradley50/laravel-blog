@@ -20,7 +20,10 @@
 				{{ Form::label('title', 'Title:') }}
 				{{ Form::text('title', null, array('class' => 'form-control', 'required' => '', 'maxlength' => '255')) }}
 
-				{{ Form::label('body', 'Post Body:') }}
+				{{ Form::label('slug', 'Slug:', array('class' => 'form-spacing-top')) }}
+				{{ Form::text('slug', null, array('class' => 'form-control', 'required' => '', 'minlength' => '5', 'maxlength' => '255')) }}
+
+				{{ Form::label('body', 'Body:', array('class' => 'form-spacing-top')) }}
 				{{ Form::textarea('body', null, array('class' => 'form-control', 'required' => '')) }}
 
 				{{ Form::submit('Create Post', array('class' => 'btn btn-block btn-lg btn-success', 'style' => 'margin-top: 20px;')) }}

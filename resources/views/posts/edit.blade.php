@@ -5,11 +5,22 @@
 @section('content')
 
 	<div class="row">
+		<div class="col-md-12">
+			<div class="alert alert-{{ Session::get('msg-class') }}">
+				{{ Session::get('message') }}
+			</div>
+		</div>
+	</div>
+
+	<div class="row">
 		{!! Form::model($post, ['route' => ['posts.update', $post->id], 'method' => 'PUT']) !!}
 		<div class="col-md-8">
 
 			{{ Form::label('title', 'Title:') }}
 			{{ Form::text('title', null, array('class' => 'form-control', 'required' => '', 'maxlength' => '255')) }}
+
+			{{ Form::label('slug', 'Slug:', array('class' => 'form-spacing-top')) }}
+			{{ Form::text('slug', null, array('class' => 'form-control', 'required' => '', 'minlength' => '5', 'maxlength' => '255')) }}
 
 			{{ Form::label('body', 'Body:', array('class' => 'form-spacing-top')) }}
 			{{ Form::textarea('body', null, array('class' => 'form-control', 'required' => '')) }}
