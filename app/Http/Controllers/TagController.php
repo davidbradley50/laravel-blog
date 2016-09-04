@@ -4,13 +4,11 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Http\Requests;
-use App\Models\Category;
+use App\Models\Tag;
 use Session;
 
-
-class CategoryController extends Controller
+class TagController extends Controller
 {
-
     public function __construct()
     {
         $this->middleware('auth');
@@ -23,10 +21,8 @@ class CategoryController extends Controller
      */
     public function index()
     {
-        // display a view of all of our categories
-        // it will also have a form to create a new category
-        $categories = Category::all();
-        return view('categories.index')->withCategories($categories);
+        $tags = Tag::all();
+        return view('tags.index')->withTags($tags);
     }
 
     /**
@@ -47,17 +43,22 @@ class CategoryController extends Controller
      */
     public function store(Request $request)
     {
+        $this->validate($request, array('name' => 'required|max:255'));
+        $tag = new Tag;
+
+
+
         $this->validate($request, array(
             'name' => 'required|max:255'
         ));
-        $category = new Category;
+        $tag = new Tag;
 
-        $category->name = $request->name;
-        $category->save();
+        $tag->name = $request->name;
+        $tag->save();
 
-        Session::flash('success', 'New Category has been created');
+        Session::flash('success', 'New Tag has been created');
 
-        return redirect()->route('categories.index');
+        return redirect()->route('tags.index');
     }
 
     /**

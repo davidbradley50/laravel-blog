@@ -31,6 +31,9 @@ Route::resource('posts', 'PostController');
 // Categories
 Route::resource('categories', 'CategoryController', ['except' => 'create']);
 
+// Tags
+Route::resource('tags', 'TagController', ['except' => 'create']);
+
 // Mist
 Route::get('contact', 'PagesController@getContact');
 Route::get('about', 'PagesController@getAbout');
