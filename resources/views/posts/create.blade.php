@@ -23,6 +23,14 @@
 				{{ Form::label('slug', 'Slug:', array('class' => 'form-spacing-top')) }}
 				{{ Form::text('slug', null, array('class' => 'form-control', 'required' => '', 'minlength' => '5', 'maxlength' => '255')) }}
 
+				{{ Form::label('category_id', 'Category:', array('class' => 'form-spacing-top')) }}
+				<select class="form-control" name="category_id">
+					<option value="">Please select a category...</option>
+					@foreach($categories as $category)
+						<option value="{{ $category->id }}">{{ $category->name }}</option>
+					@endforeach
+				</select>
+
 				{{ Form::label('body', 'Body:', array('class' => 'form-spacing-top')) }}
 				{{ Form::textarea('body', null, array('class' => 'form-control', 'required' => '')) }}
 

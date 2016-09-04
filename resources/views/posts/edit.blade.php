@@ -22,8 +22,11 @@
 			{{ Form::label('slug', 'Slug:', array('class' => 'form-spacing-top')) }}
 			{{ Form::text('slug', null, array('class' => 'form-control', 'required' => '', 'minlength' => '5', 'maxlength' => '255')) }}
 
+			{{ Form::label('category_id', "Category:", array('class' => 'form-spacing-top')) }}
+			{{ Form::select('category_id', $categories, null, ['class' => 'form-control']) }}
+
 			{{ Form::label('body', 'Body:', array('class' => 'form-spacing-top')) }}
-			{{ Form::textarea('body', null, array('class' => 'form-control', 'required' => '')) }}
+			{{ Form::textarea('body', $post->category_id, array('class' => 'form-control', 'required' => '')) }}
 		</div>
 		<div class="col-md-4">
 			<div class="well">

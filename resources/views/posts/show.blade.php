@@ -19,6 +19,9 @@
 				<label>Url:</label>
 				<p><a href="{{ route('blog.single', $post->slug) }}">{{ route('blog.single', $post->slug) }}</a></p>
 
+				<label>Category:</label>
+				<p>{{ $post->category->name }}</p>
+
 				<label>Created At:</label>
 				<p>{{ date('M j, Y h:ia', strtotime($post->created_at)) }}</a></p>
 
