@@ -8,6 +8,7 @@ use App\Http\Requests;
 use App\Http\Controllers\Controller;
 use App\Models\Post;
 use App\Models\Category;
+use App\Models\Tag;
 use Session;
 
 class PostController extends Controller
@@ -37,7 +38,10 @@ class PostController extends Controller
     public function create()
     {
         $categories = Category::all();
-        return view('posts.create')->withCategories($categories);
+        $tags = Tag::all();
+        return view('posts.create')
+                ->withCategories($categories)
+                ->withTags($tags);
     }
 
     /**
@@ -66,8 +70,9 @@ class PostController extends Controller
 
         $post->save();
 
-        $request->session()->flash('message', 'This post was successfully saved.');
-        $request->session()->flash('msg-class', 'success');
+        $post->tags()->sync($request->tags, false);
+
+        Session::flash('success', 'The post was successfully saved.');
 
         // redirect to another page
         return redirect()->route('posts.show', $post->id);
@@ -96,12 +101,21 @@ class PostController extends Controller
     {
         $post = Post::find($id);
         $categories = Category::all();
-        $cats = array();
+        $cats_array = array();
         foreach ($categories as $category) {
-            $cats[$category->id] = $category->name;
+            $cats_array[$category->id] = $category->name;
         }
+
+        $tags = Tag::all();
+        $tags_array = array();
+        foreach ($tags as $tag) {
+            $tags_array[$tag->id] = $tag->name;
+        }
+
         // return the view and pass in the var we previously created
-        return view('posts.edit')->withPost($post)->withCategories($cats);
+        return view('posts.edit')->withPost($post)
+                                 ->withCategories($cats_array)
+                                 ->withTags($tags_array);
     }
 
     /**
@@ -142,6 +156,13 @@ class PostController extends Controller
 
         // Save the post with the updated data
         $post->save();
+
+        if (isset($request->tags)) {
+            $post->tags()->sync($request->tags, true);
+        } else {
+            $post->tags()->sync(array(), true);
+        }
+
 
         // set flash data with success message
         Session::flash('success', 'This post was successfully saved.');

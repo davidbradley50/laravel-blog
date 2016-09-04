@@ -1,6 +1,12 @@
 @extends('main')
 
-@section('title', '| View Post')
+@section('title', '| Edit Blog Post')
+
+@section('stylesheets')
+
+	<link rel="stylesheet" href="{{ URL::asset('css/select2.min.css') }}" >
+
+@endsection
 
 @section('content')
 
@@ -25,7 +31,9 @@
 			{{ Form::label('category_id', "Category:", array('class' => 'form-spacing-top')) }}
 			{{ Form::select('category_id', $categories, null, ['class' => 'form-control']) }}
 
-			{{ Form::label('body', 'Body:', array('class' => 'form-spacing-top')) }}
+			{{ Form::label('tags', 'Tags:', array('class' => 'form-spacing-top')) }}
+			{{ Form::select('tags[]', $tags, null, ['class' => 'form-control select2-multi', 'multiple' => 'multiple']) }}
+
 			{{ Form::textarea('body', $post->category_id, array('class' => 'form-control', 'required' => '')) }}
 		</div>
 		<div class="col-md-4">
@@ -54,4 +62,14 @@
 		</div>
 	</div>
 
+@endsection
+
+
+@section('scripts')
+	<!-- Include select 2 library for multi select -->
+	<script src="{{ URL::asset('js/select2.min.js') }}"></script>
+	<script type="text/javascript">
+		$('.select2-multi').select2();
+		$('.select2-multi').select2().val({!! json_encode($post->tags()->getRelatedIds()) !!}).trigger('change');
+	</script>
 @endsection

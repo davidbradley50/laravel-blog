@@ -1,13 +1,14 @@
 @extends('main')
 
-@section('title', '| New Post')
+@section('title', '| Create New Post')
 
 @section('stylesheets')
-	<!-- Default Laravel way to include css files -->
-	{{-- <link rel="stylesheet" href="{{ URL::asset('css/parsley.css') }}" > --}}
+	{{-- {!! Html::style('css/parsley.css') !!} --}}
 
-	<!-- parley library CSS -->
-	{!! Html::style('css/parsley.css') !!}
+	<!-- parley and select 2 libraries -->
+	<link rel="stylesheet" href="{{ URL::asset('css/parsley.css') }}" >
+	<link rel="stylesheet" href="{{ URL::asset('css/select2.min.css') }}" >
+
 @endsection
 
 @section('content')
@@ -31,6 +32,14 @@
 					@endforeach
 				</select>
 
+				{{ Form::label('tags', 'Tags:', array('class' => 'form-spacing-top')) }}
+				<select class="form-control select2-multi" name="tags[]" multiple="multiple">
+					<option value="">Please select a tag...</option>
+					@foreach($tags as $tag)
+						<option value="{{ $tag->id }}">{{ $tag->name }}</option>
+					@endforeach
+				</select>
+
 				{{ Form::label('body', 'Body:', array('class' => 'form-spacing-top')) }}
 				{{ Form::textarea('body', null, array('class' => 'form-control', 'required' => '')) }}
 
@@ -43,9 +52,14 @@
 
 
 @section('scripts')
-	<!-- Default Laravel way to include js files -->
-	{{-- <script src="{{ URL::asset('js/parsley.min.js') }}"></script> --}}
+	{{-- {!! Html::script('js/parsley.min.js') !!} --}}
 
 	<!-- Include parsley library for form validation -->
-	{!! Html::script('js/parsley.min.js') !!}
+	<script src="{{ URL::asset('js/parsley.min.js') }}"></script>
+	<!-- Include select 2 library for multi select -->
+	<script src="{{ URL::asset('js/select2.min.js') }}"></script>
+
+	<script type="text/javascript">
+		$('.select2-multi').select2();
+	</script>
 @endsection
