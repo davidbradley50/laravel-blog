@@ -131,8 +131,7 @@ class PostController extends Controller
         $post->save();
 
         // set flash data with success message
-        $request->session()->flash('message', 'This post was successfully saved.');
-        $request->session()->flash('msg-class', 'success');
+        Session::flash('success', 'This post was successfully saved.');
 
         // redirect with flash data to posts.show
         return redirect()->route('posts.show', $post->id);
@@ -150,11 +149,7 @@ class PostController extends Controller
 
         $post->delete();
 
-        $request->session()->flash('message', 'Post successfully deleted.');
-        $request->session()->flash('msg-class', 'success');
-
-        // Session::put('message', 'Post successfully deleted.');
-        // Session::put('msg-class', 'success');
+        Session::flash('success', 'The post was successfully deleted.');
 
         return redirect()->route('posts.index');
     }
