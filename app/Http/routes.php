@@ -36,6 +36,7 @@ Route::resource('tags', 'TagController', ['except' => 'create']);
 
 // Mist
 Route::get('contact', 'PagesController@getContact');
+Route::post('contact', 'PagesController@postContact');
 Route::get('about', 'PagesController@getAbout');
 Route::get('/', 'PagesController@getIndex');
 Route::get('blog', ['uses' => 'BlogController@getIndex', 'as' => 'blog.index']);
