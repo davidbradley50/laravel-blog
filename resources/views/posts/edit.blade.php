@@ -34,7 +34,7 @@
 			{{ Form::label('tags', 'Tags:', array('class' => 'form-spacing-top')) }}
 			{{ Form::select('tags[]', $tags, null, ['class' => 'form-control select2-multi', 'multiple' => 'multiple']) }}
 
-			{{ Form::textarea('body', $post->category_id, array('class' => 'form-control', 'required' => '')) }}
+			{{ Form::textarea('body', $post->body, array('class' => 'form-control', 'required' => '')) }}
 		</div>
 		<div class="col-md-4">
 			<div class="well">
