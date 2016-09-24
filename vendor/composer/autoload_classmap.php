@@ -9,6 +9,7 @@ return array(
     'AddCategoryIdToPosts' => $baseDir . '/database/migrations/2016_09_04_083207_add_category_id_to_posts.php',
     'AddSlugToPosts' => $baseDir . '/database/migrations/2016_08_07_040653_add_slug_to_posts.php',
     'CreateCategoriesTable' => $baseDir . '/database/migrations/2016_09_03_111321_create_categories_table.php',
+    'CreateCommentsTable' => $baseDir . '/database/migrations/2016_09_24_073300_create_comments_table.php',
     'CreatePasswordResetsTable' => $baseDir . '/database/migrations/2014_10_12_100000_create_password_resets_table.php',
     'CreatePostTagTable' => $baseDir . '/database/migrations/2016_09_04_141425_create_post_tag_table.php',
     'CreatePostsTable' => $baseDir . '/database/migrations/2016_07_31_144221_create_posts_table.php',
