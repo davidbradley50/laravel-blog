@@ -6,6 +6,7 @@
 
 	<div class="row">
 		<div class="col-md-8">
+
 			<h1>{{ $post->title }}</h1>
 
 			<p class="lead">{!! $post->body !!}</p>
@@ -83,8 +84,13 @@
 						<a href="{{ route('posts.index') }}" class="btn btn-default btn-block btn-h1-spacing"><< See All Posts</a>
 					</div>
 				</div>
-
 			</div>
+			<div class="row">
+				<div class="col-md-12">
+					<img src="{{ asset('images/' . $post->image) }}" class="img-responsive" />
+				</div>
+			</div>
+
 		</div>
 	</div>
 
