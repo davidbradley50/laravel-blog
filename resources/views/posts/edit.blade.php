@@ -6,6 +6,15 @@
 
 	<link rel="stylesheet" href="{{ URL::asset('css/select2.min.css') }}" >
 
+	<script src="//cdn.tinymce.com/4/tinymce.min.js"></script>
+	<script>
+		tinymce.init({
+			selector: 'textarea',
+			plugins: "link code image imagetools",
+			menubar: false,
+		});
+	</script>
+
 @endsection
 
 @section('content')
@@ -34,6 +43,7 @@
 			{{ Form::label('tags', 'Tags:', array('class' => 'form-spacing-top')) }}
 			{{ Form::select('tags[]', $tags, null, ['class' => 'form-control select2-multi', 'multiple' => 'multiple']) }}
 
+			{{ Form::label('body', 'Body:', array('class' => 'form-spacing-top')) }}
 			{{ Form::textarea('body', $post->body, array('class' => 'form-control', 'required' => '')) }}
 		</div>
 		<div class="col-md-4">
